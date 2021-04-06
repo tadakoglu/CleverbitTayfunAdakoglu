@@ -34,4 +34,13 @@ export class PostsComponent implements OnInit {
     comment.date = new Date().toISOString();
     this.commentService.addNewComment(comment);
   }
+
+  likeThisPost(postId){
+    let username = this.authService.getCurrentUsername();
+    this.postService.likePost(postId, username);
+  }
+
+  getPostLikes(postId){
+    return this.postService.getPostLikes(postId);
+  }
 }

@@ -1,4 +1,4 @@
-<div *ngFor="let post of getPosts">
+<div class="post" *ngFor="let post of getPosts">
   <h2>{{post.title}}</h2>
   <p>{{post.description}}</p>
 
@@ -13,5 +13,7 @@
     <h3>{{comment.comment}}</h3>
     <span>Sent by {{comment.sender}} at {{comment.date | date:'short'}}</span>
   </div>
+  <button class="commentButton" type="button" (click)="likeThisPost(post.postId)">Like this post ({{getPostLikes(post.postId)}} liked)</button>
+
 
 </div>

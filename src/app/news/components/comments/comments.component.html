@@ -1,5 +1,5 @@
 <div class="comment"   *ngFor="let comment of getMyComments">
-  <h2>{{comment.title}}</h2>
-  <p>{{comment.date}}</p>
-
+  <h2>{{comment.comment}}</h2>
+  <p>{{comment.date | date:'short'}}</p>
+  <p>#{{getPostName(comment.postId)}}</p>
 </div>
