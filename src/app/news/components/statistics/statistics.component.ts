@@ -22,10 +22,15 @@ export class StatisticsComponent implements OnInit, OnDestroy {
 
   ngOnInit() { 
     let thisUser = this.authService.getCurrentUsername();
+
+    //Note that this is just a simulation, SignalR, WebSockets etc can be usable for these reasons.
     this.subs.push(this.dataServie.newDataAvailable.subscribe( user=>{
         if(user != thisUser) // Signaled by other user
         {
-          window.location.reload();
+          // This is the most basic solution
+          // Change detector can be run
+          // We can signal a message to all repositories etc.
+          window.location.reload();               
         }
     }))    
   }
