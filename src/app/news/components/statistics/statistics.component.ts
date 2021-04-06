@@ -23,6 +23,7 @@ export class StatisticsComponent implements OnInit, OnDestroy {
   ngOnInit() { 
     let thisUser = this.authService.getCurrentUsername();
 
+    //We can use var t = setTimeout(showTime, 1000); for repetitive listening
     //Note that this is just a simulation, SignalR, WebSockets etc can be usable for these reasons.
     this.subs.push(this.dataServie.newDataAvailable.subscribe( user=>{
         if(user != thisUser) // Signaled by other user
