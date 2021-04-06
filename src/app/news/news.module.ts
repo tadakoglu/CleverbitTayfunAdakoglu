@@ -8,13 +8,15 @@ import { NewsComponent } from './components/news/news.component';
 import { CommentsComponent } from './components/comments/comments.component';
 import { CommentsService } from './services/comments.service';
 import { AuthModule } from '../auth/auth.module';
+import { StatisticsComponent } from './components/statistics/statistics.component';
+import { DataService } from './services/data.service';
 
 
 @NgModule({
-  declarations: [NewsComponent, PostsComponent, CommentsComponent],
+  declarations: [NewsComponent, PostsComponent, CommentsComponent,StatisticsComponent],
   imports: [
     CommonModule, NewsRoutingModule, RouterModule, AuthModule
   ],
-  providers: [PostsService, CommentsService]
+  providers: [PostsService, CommentsService,DataService]
 })
 export class NewsModule { }

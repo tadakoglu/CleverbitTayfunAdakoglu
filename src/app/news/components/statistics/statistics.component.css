@@ -1,0 +1,9 @@
+.stats{
+    display: flex;
+    background-color: rgb(224, 219, 219);
+    margin-bottom:10px;
+    padding:10px
+}
+.statCol{
+    width: 25%;
+}

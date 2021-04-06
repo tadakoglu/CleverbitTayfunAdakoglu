@@ -1,11 +1,12 @@
 
 import { Injectable } from '@angular/core';
 import { Comment } from '../models/comment.model';
+import { DataService } from './data.service';
 
 @Injectable()
 export class CommentsService {
 
-constructor() {
+constructor(private dataService: DataService) {
     let exampleComment = new Comment();
     exampleComment.postId = 0
     exampleComment.commentId = 1
@@ -36,6 +37,10 @@ constructor() {
   getUserComments(username:string){
     return this.comments.filter( comment => comment.sender == username )
   }
+  getNumberOfCommentsSentByUsername(username){
+    let count = this.comments.filter( comment => comment.sender == username )?.length ?? 0
+    return count
+  }
 
 
   addNewComment(comment:Comment){
@@ -47,5 +52,7 @@ constructor() {
     comment.commentId = newId;
     //Push the new comment to front-end database
     this.comments.push(comment);
+
+    this.dataService.newDataAvailable.next(comment.sender);
   }
 }

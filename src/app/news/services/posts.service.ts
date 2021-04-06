@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Post } from '../models/post.model';
 import { PostLike } from '../models/postLike.model';
+import { DataService } from './data.service';
 
 @Injectable()
 export class PostsService {
 
-  constructor() {
+  constructor(private dataService: DataService) {
     let examplePost = new Post();
     examplePost.postId = 0
     examplePost.title = "example post"
@@ -40,6 +41,10 @@ export class PostsService {
     let postLike = this.postLikes.filter(p => p.postId == postId)?.length
     return postLike ? postLike : 0;
   }
+  getNumberOfPostLikesByUsername(username){
+    let count = this.postLikes.filter(pl => pl.likedBy == username)?.length ?? 0
+    return count;
+  }
 
   likePost(postId, username) {
     let pLike = this.postLikes.find(pl => pl.postId == postId && pl.likedBy == username)
@@ -49,6 +54,9 @@ export class PostsService {
       postLike.likedBy = username
       this.postLikes.push(postLike)
     }
+
+    this.dataService.newDataAvailable.next(username);
+
 
   }
 
