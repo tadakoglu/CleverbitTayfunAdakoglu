@@ -1,0 +1,17 @@
+<div *ngFor="let post of getPosts">
+  <h2>{{post.title}}</h2>
+  <p>{{post.description}}</p>
+
+  <!-- comments -->
+  <div class="commentArea">
+    <input id="{{post.postId}}" name="comment{{post.postId}}" placeholder="Write your comment here">
+    <button type="button" (click)="sendComment(post.postId)">Send</button>
+  </div>
+
+  
+  <div class="comment" *ngFor="let comment of getPostComments(post.postId)">
+    <h3>{{comment.comment}}</h3>
+    <span>Sent by {{comment.sender}} at {{comment.date | date:'short'}}</span>
+  </div>
+
+</div>
